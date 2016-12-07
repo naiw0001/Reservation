@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.idc06.layout.reservation.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_toolbar"
+        android:background="#AAEE00"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+    </android.support.v7.widget.Toolbar>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_toolbar"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:text="예약하기"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:onClick="reservation"
+        android:id="@+id/btn_reserv"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_reserv"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:onClick="cancel"
+        android:text="취소하기"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:id="@+id/btn_can"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_can"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:onClick="show"
+        android:text="예약 확인하기"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:id="@+id/show"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="by인원이"
+        android:id="@+id/writer"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
