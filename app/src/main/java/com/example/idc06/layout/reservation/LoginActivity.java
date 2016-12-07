@@ -36,14 +36,14 @@ public class LoginActivity extends AppCompatActivity {
         bt_join = (Button)findViewById(R.id.btn_join);
         bt_login.setBackgroundColor(Color.argb(0,0,0,0));
         bt_join.setBackgroundColor(Color.argb(0,0,0,0));
-        db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
-    }
+        db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
 
+    }
     //로그인 메소드
     public void login(View v){
         String id = _id.getText().toString();
         int pw = Integer.parseInt(_pw.getText().toString());
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
+        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
         String login = db_reservation.login(id,pw);
 
         if(login.equals("Ok")){
@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 id = ed_id.getText().toString();
                 pw = ed_pw.getText().toString();
 
-                DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
-                db_reservation.insert("insert into member_list values ('"+id+"',"+pw+",'"+name+"',"+age+",'"+gender+"','"+phone+"');");
+                DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
+                db_reservation.insert("insert into member values ('"+id+"',"+pw+",'"+name+"',"+age+",'"+gender+"','"+phone+"');");
                 Toast.makeText(LoginActivity.this,"회원가입이 완료되었습니다.",Toast.LENGTH_SHORT).show();
             }
         });

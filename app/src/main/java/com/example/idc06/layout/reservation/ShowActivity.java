@@ -27,7 +27,7 @@ public class ShowActivity extends AppCompatActivity {
         toolbar.setTitle(name +"님 예약 조회 목록");
         setSupportActionBar(toolbar);
 
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
+        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
         String show = db_reservation.printwhere(name);
         textView.setText(show);
 

@@ -47,7 +47,6 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
     private TextView room;
     private LinearLayout button_layout, button_layout2;
     private ViewFlipper viewFlipper;
-//    private RadioButton gender_m,gender_w;
     private String[] limit;
     private ArrayAdapter<String> adapter;
     private Spinner limit_spinner;
@@ -73,8 +72,6 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         timePicker = (TimePicker) findViewById(R.id.time);
         datePicker = (DatePicker)findViewById(R.id.date);
         viewFlipper = (ViewFlipper)findViewById(R.id.vf);
-//        ed_name = (EditText)findViewById(R.id._name);
-//        ed_age = (EditText)findViewById(R.id._age);
         room = (TextView)findViewById(R.id.room_text);
         room1 = (Button)findViewById(R.id.bt_room1);
         room2 = (Button)findViewById(R.id.bt_room2);
@@ -101,25 +98,9 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         });
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
-        name =db_reservation.member_name(id);
-        age=db_reservation.member_age(id);
-        gender=db_reservation.member_gender(id);
+        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
+        name = db_reservation.printname(id);
 
-//        gender_m = (RadioButton)findViewById(R.id.man);
-//        gender_w = (RadioButton)findViewById(R.id.woman);
-//        gender_m.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = "남자";
-//            }
-//        });
-//        gender_w.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = "여자";
-//            }
-//        });
 
     }
 
@@ -145,9 +126,6 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
 
     // 맨 처음 다음 버튼
     public void fnext(View v){
-
-//        name = ed_name.getText().toString();
-//        age = ed_age.getText().toString();
         peo_num = peo_ed.getText().toString();
         p_num = Integer.parseInt(peo_num);
         next.setVisibility(View.GONE);
@@ -169,9 +147,6 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
 
     //이름 설정 뒤로가기
     public void btn_back_n(View v){
-//        name ="";
-//        age ="";
-//        gender="";
         next.setVisibility(View.VISIBLE);
         button_layout.setVisibility(View.INVISIBLE);
         button_layout2.setVisibility(View.INVISIBLE);
@@ -232,16 +207,16 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void mydatabase(){ //db 에 내용 저장 메소드
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 ); // db생성
-        db_reservation.insert("insert into reservation_list values (null,'"+name+"',"+age+",'"+gender+"','"+result+"','"+room_num+"',"+p_num+",'"+limit_time+"','"+now+"');");
+        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 ); // db생성
+        db_reservation.insert("insert into reservation values (null,'"+result+"','"+room_num+"',"+p_num+",'"+limit_time+"','"+now+"','"+id+"');");
         file();
     }
 
     public void file(){
         //파일 처리
         try {
-            DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
-            String temp = db_reservation.print();
+            DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
+            String temp = db_reservation.select_join();
 //            File file3 = new File(getFilesDir().getAbsolutePath() + "/reservation_list.txt"); // X
 //            File file2 = new File ("/mnt/sdcard/reservation_list.txt"); // X
 //            File file = new File("/storage/emulated/0/reservation_list.txt"); // X

@@ -26,9 +26,9 @@ public class AdminActivity extends AppCompatActivity {
         toolbar.setTitle("관리자 페이지");
         setSupportActionBar(toolbar);
         textView = (TextView)findViewById(R.id.db_text);
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
+        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
         member += db_reservation.member_print();
-        reservation +=db_reservation.adminPrint();
+        reservation +=db_reservation.reservation_list();
 
         Log.d("asd",member);
         Log.d("zxc",reservation);

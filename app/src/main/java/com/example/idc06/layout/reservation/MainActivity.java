@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         id = intent.getStringExtra("id");
 
     }
-            // Button onClick
+    // Button onClick
 
     public void reservation(View v){ // 예약 하기
         Intent intent_re = new Intent(MainActivity.this,ReservationActivity.class);
@@ -52,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 del_idx = (EditText)dialog_del_view.findViewById(R.id.del_idx);
                 String dName = del_name.getText().toString();
                 String dIdx = del_idx.getText().toString();
-                DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyungschool_reservation.db",null,1 );
-                db_reservation.delete("DELETE FROM reservation_list WHERE _name='"+dName+"' AND _idx = '"+dIdx+"';");
+                int idx = Integer.parseInt(dIdx);
+                DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
+                db_reservation.delete("DELETE FROM list WHERE _name='"+dName+"' AND _idx = "+idx+";");
+                db_reservation.delete("DELETE FROM reservation WHERE _idx = "+idx+";");
                 Toast.makeText(getApplicationContext(),"취소되었습니다.",Toast.LENGTH_SHORT).show();
             }
         });
