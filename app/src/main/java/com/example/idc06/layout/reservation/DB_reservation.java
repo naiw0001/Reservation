@@ -148,7 +148,7 @@ public class DB_reservation extends SQLiteOpenHelper {
         return reservation;
     }
 
-    public String member_print(){ // 출력
+    public String member_print(){ // 멤버 출력
         SQLiteDatabase db = getWritableDatabase();
         String list = "";
         Cursor cursor = db.rawQuery("select * from member_list where not _id = 'admin' ",null);
@@ -172,7 +172,7 @@ public class DB_reservation extends SQLiteOpenHelper {
         return list;
     }
 
-    public String member_name(String id){
+    public String member_name(String id){ // 멤버 아이디 출력
         SQLiteDatabase db = getWritableDatabase();
         String name="";
         Cursor cursor = db.rawQuery("select * from member_list where _id = '"+id+"' ",null);
@@ -182,7 +182,7 @@ public class DB_reservation extends SQLiteOpenHelper {
         return name;
     }
 
-    public String member_age(String id){
+    public String member_age(String id){ // 멤버 나이 출력
         SQLiteDatabase db = getWritableDatabase();
         String age="";
         Cursor cursor = db.rawQuery("select * from member_list where _id = '"+id+"' ",null);
@@ -192,7 +192,7 @@ public class DB_reservation extends SQLiteOpenHelper {
         return age;
     }
 
-    public String member_gender(String id){
+    public String member_gender(String id){ // 멤버 성별 출력
         SQLiteDatabase db = getWritableDatabase();
         String gender="";
         Cursor cursor = db.rawQuery("select * from member_list where _id = '"+id+"' ",null);
