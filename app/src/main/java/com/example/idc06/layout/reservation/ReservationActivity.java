@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -56,6 +55,7 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
     private EditText peo_ed;
     private int p_num;
     private String now="";
+    String people_num;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,8 +99,7 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
-        name = db_reservation.printname(id);
-
+//        name = db_reservation.printname(id);
 
     }
 
@@ -171,7 +170,8 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         button_layout2.setVisibility(View.VISIBLE);
         minute = String.valueOf(timePicker.getMinute());
         hour = String.valueOf(timePicker.getHour());
-
+        people_num = String.valueOf(p_num);
+        people_num +="명";
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
         String N_year = (new SimpleDateFormat("yyyy").format(date));
@@ -207,9 +207,13 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void mydatabase(){ //db 에 내용 저장 메소드
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 ); // db생성
-        db_reservation.insert("insert into reservation values (null,'"+result+"','"+room_num+"',"+p_num+",'"+limit_time+"','"+now+"','"+id+"');");
-        file();
+//        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 ); // db생성
+//        db_reservation.insert("insert into reservation values (null,'"+result+"','"+room_num+"',"+p_num+",'"+limit_time+"','"+now+"','"+id+"');");
+//        file();
+        String link="http://10.142.47.250:8000/naiw/reservaion_insert.php";
+        Reservation_Task insert = new Reservation_Task();
+        insert.insert_reservation(link,result,room_num,people_num,limit_time,now,id);
+
     }
 
     public void file(){
