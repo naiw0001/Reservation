@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -135,18 +136,28 @@ public class LoginActivity extends AppCompatActivity {
             String data;
             BufferedReader bufferedReader;
 
+
             try {
                 String link = "http://10.142.47.250:8000/naiw/member_insert.php";
-                data = "?id=" + URLEncoder.encode(id, "UTF-8");
-                data += "&pw=" + URLEncoder.encode(pw, "UTF-8");
-                data += "&name=" + URLEncoder.encode(name, "UTF-8");
-                data += "&age=" + URLEncoder.encode(age, "UTF-8");
-                data += "&gender=" + URLEncoder.encode(gender, "UTF-8");
-                data += "&phone=" + URLEncoder.encode(phone, "UTF-8");
-                link += data;
+
+                data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(id,"UTF-8");
+                data +=  "&"+URLEncoder.encode("pw","UTF-8")+"="+URLEncoder.encode(pw, "UTF-8");
+                data +=  "&"+URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name, "UTF-8");
+                data +=  "&"+URLEncoder.encode("age","UTF-8")+"="+URLEncoder.encode(age, "UTF-8");
+                data +=  "&"+URLEncoder.encode("gender","UTF-8")+"="+URLEncoder.encode(gender, "UTF-8");
+                data +=  "&"+URLEncoder.encode("phone","UTF-8")+"="+URLEncoder.encode(phone, "UTF-8");
+                Log.d("id",id);
+
                 url = new URL(link);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //                conn.connect();
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                conn.setRequestMethod("POST");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
+                outputStreamWriter.write(data);
+                outputStreamWriter.flush();
+                outputStreamWriter.close();
                 bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String result = bufferedReader.readLine();
                 return result;

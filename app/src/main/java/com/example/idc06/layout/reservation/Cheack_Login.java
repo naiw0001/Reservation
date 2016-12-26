@@ -18,8 +18,8 @@ import java.util.concurrent.ExecutionException;
 public class Cheack_Login extends AppCompatActivity {
     String result;
     String _id, _pw;
-    ArrayList list_id = new ArrayList();
-    ArrayList list_pw = new ArrayList();
+    ArrayList list_id = new ArrayList(); // id array
+    ArrayList list_pw = new ArrayList(); // pw array
 
     public String getresult() {
         Log.d("asd",result);
@@ -75,7 +75,6 @@ public class Cheack_Login extends AppCompatActivity {
         String id;
         String pw;
         try {
-//            JSONObject jo = new JSONObject(result);
             JSONArray ja = new JSONArray(json);
             for (int i = 0; i < ja.length(); i++) {
                 JSONObject j = ja.getJSONObject(i);

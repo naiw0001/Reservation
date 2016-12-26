@@ -16,10 +16,8 @@ import java.net.URLEncoder;
 
 public class Reservation_Task extends Activity{
 
-
     public void insert_reservation(String _link, String _result, String _room_num, String _people_num, String _limit_time, String _now, String _id){
     class reservationtask extends AsyncTask<String,Void,String>{
-
         @Override
         protected String doInBackground(String... params) {
             String link = params[0];
@@ -40,7 +38,6 @@ public class Reservation_Task extends Activity{
                 data += "&limit_time="+URLEncoder.encode(limit_time,"UTF-8");
                 data += "&now="+URLEncoder.encode(now,"UTF-8");
                 data += "&id="+URLEncoder.encode(id,"UTF-8");
-
                 link += data;
                 Log.d("asdzxc",link);
                 url = new URL(link);

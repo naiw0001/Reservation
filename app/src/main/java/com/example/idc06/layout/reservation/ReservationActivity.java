@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,6 +28,9 @@ import android.widget.ViewFlipper;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -213,6 +217,7 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         String link="http://10.142.47.250:8000/naiw/reservaion_insert.php";
         Reservation_Task insert = new Reservation_Task();
         insert.insert_reservation(link,result,room_num,people_num,limit_time,now,id);
+        new JoinTask().execute("http://10.142.47.250:8000/naiw/join.php");
 
     }
 
@@ -235,20 +240,19 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    public void alarmset(){ // 알람
 
-        int _year,_month,_day,_hour,_minute;
-        _year = Integer.parseInt(year);
-        _month = Integer.parseInt(month);
-        _day = Integer.parseInt(day);
-        _hour = Integer.parseInt(hour);
-        _minute = Integer.parseInt(minute);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(_year,_month,_day,_hour,_minute);
-        Intent intent;
-        PendingIntent pendingIntent;
-        AlarmManager alarmManager;
+    class JoinTask extends AsyncTask<String,Void,String>{ // join
+        @Override
+        protected String doInBackground(String... params) {
+            String link = params[0];
+            try {
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
 

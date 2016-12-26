@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private View dialog_view, dialog_del_view;
-    private EditText ed_name, del_name, del_idx;
+    private EditText ed_name, ed_id, del_name, del_idx;
     private String id;
 
     @Override
@@ -70,9 +70,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ed_name = (EditText)dialog_view.findViewById(R.id.ed_name);
+                ed_id = (EditText)dialog_view.findViewById(R.id.ed_id);
                 Intent intent = new Intent(MainActivity.this,ShowActivity.class);
                 String _name = ed_name.getText().toString();
+                String _id = ed_id.getText().toString();
                 intent.putExtra("name",_name);
+                intent.putExtra("id",_id);
                 startActivity(intent);
             }
         });
