@@ -77,38 +77,40 @@ public class Cheack_Login extends AppCompatActivity {
         try {
             JSONArray ja = new JSONArray(json);
             for (int i = 0; i < ja.length(); i++) {
+                Log.d("vvvvvvvvvvvvv", String.valueOf(ja.length()));
                 JSONObject j = ja.getJSONObject(i);
                 r += String.format("아이디 : %s 비번 : %s\n", j.getString("_id"), j.getString("_password"));
                 id = j.getString("_id");
-                Log.d("asdzxcasd",id);
+                Log.d("ccccccccccccc",id);
                 pw = j.getString("_password");
-                Log.d("asdzxcasd",pw);
+                Log.d("aaaaaaaaaaa",pw);
                 list_id.add(id);
+                Log.d("nnnnnnnnnnnnnn",list_id.get(i).toString());
                 list_pw.add(pw);
+                Log.d("nnnnnnnnnnnnnnnnnss",list_pw.get(i).toString());
             }
             Log.d("asdzxc",r);
 
         } catch (Exception e) {}
         Log.d("zxczxc", String.valueOf(list_id.size()));
-        for (int i = 1; i <= list_id.size(); i++) {
-            Log.d("asdzxc",list_id.get(i).toString());
-            Log.d("zxcasd",list_pw.get(i).toString());
-            if (_id.equals(list_id.get(i).toString().trim()) && _pw.equals(list_pw.get(i).toString().trim())) {
+        for (int i = 0; i < list_id.size(); i++) {
+            Log.d("xxxxxxxxxxxxxxxx",list_id.get(i).toString());
+            Log.d("ddddddddddddddd",list_pw.get(i).toString());
+
+            if (_id.equals(list_id.get(i).toString()) && _pw.equals(list_pw.get(i).toString())) {
                 result = "OK";
-                break;
-            }else if(_id.equals("admin")){
-                result = "admin";
+                if(_id.equals("admin")){
+                    result = "admin";
+                    break;
+                }
                 break;
             }else {
                 result = "Fail";
-                break;
             }
 
         }
+
         return result;
     }
 
 }
-
-
-

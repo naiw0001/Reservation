@@ -102,8 +102,6 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         });
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
-//        name = db_reservation.printname(id);
 
     }
 
@@ -166,7 +164,7 @@ public class ReservationActivity extends AppCompatActivity implements View.OnCli
         viewFlipper.showPrevious();
 
     }
-    // 확인
+    // Ok
     @TargetApi(Build.VERSION_CODES.M)
     public void btn_okay(View v) {
         next.setVisibility(View.GONE);

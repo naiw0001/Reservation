@@ -41,9 +41,6 @@ public class ShowActivity extends AppCompatActivity {
         toolbar.setTitle(name +"님 예약 조회 목록");
         setSupportActionBar(toolbar);
 
-//        DB_reservation db_reservation = new DB_reservation(getApplicationContext(),"inpyung.db",null,1 );
-//        String show = db_reservation.printwhere(name);
-
         String show="";
         new ShowTask().execute("http://10.142.47.250:8000/naiw/show.php?index=0");
 
@@ -54,7 +51,6 @@ public class ShowActivity extends AppCompatActivity {
             super.onPostExecute(s);
             textView.setText(s);
         }
-
         @Override
         protected String doInBackground(String... params) {
             StringBuilder json = new StringBuilder();
